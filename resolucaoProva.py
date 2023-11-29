@@ -79,9 +79,9 @@ client = mqtt.Client('Prof-Publish')
 client.connect('10.10.10.80',1888,60)
 
 #definição para controlar o clique do botão
-def botaoPrecionado():
-    client.publish(canalBotao, 'Botão precionado')
-    print('Botão precionado')
+def botaopressionado():
+    client.publish(canalBotao, 'Botão pressionado')
+    print('Botão pressionado')
 
 #definição para controlar os alertas
 def msgAlerta(msg, tipo):
@@ -106,7 +106,7 @@ while True:
     #verifica se houve o clique no botão
     if gpio.input(botao) == True:
         delay.sleep(0.5)
-        botaoPrecionado()
+        botaopressionado()
         msgAlerta('Sistema iniciado', False)
 
         #inicialização das váriáveis de horário para controle das leituras
@@ -114,12 +114,12 @@ while True:
         horaLeituraDHT = delay.time()
 
         #se clicou a primeira vez inicia o sistema e trava o processamento dentro de outro loop para ignorar o primeiro clique do botão
-        #lembrando que agora ele só vai desligar os alertas se for precionado denovo
+        #lembrando que agora ele só vai desligar os alertas se for pressionado denovo
         while True:
 
             if gpio.input(botao) == True:
                 delay.sleep(0.5)
-                botaoPrecionado()
+                botaopressionado()
 
                 #verifica se existe alerta, desliga o alerta
                 if alerta:
