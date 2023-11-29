@@ -7,7 +7,7 @@ import paho.mqtt.client as mqtt
 #definição de pinagem seguindo a ordem da placa
 gpio.setmode(gpio.BOARD)
  
-#variáveis de interessão com os GPIOs
+#variáveis de interação com os GPIOs
 ledvermelho = 11
 ledverde = 12
 ldr = 13
@@ -110,7 +110,7 @@ while True:
         msgAlerta('Sistema iniciado', False)
 
         #inicialização das váriáveis de horário para controle das leituras
-        horaLeituraDistanci = delay.time()
+        horaLeituraDistancia = delay.time()
         horaLeituraDHT = delay.time()
 
         #se clicou a primeira vez inicia o sistema e trava o processamento dentro de outro loop para ignorar o primeiro clique do botão
@@ -133,7 +133,7 @@ while True:
 
             #essa comparação faz com que o código não trave no delay e execute a leitura da distância a cada 5 segundos se o alerta estiver desligado
             #em caso de alerta ligado não preciso verificar
-            if (horaAtual - horaLeituraDistanci) >= 5 and alerta == False:
+            if (horaAtual - horaLeituraDistancia) >= 5 and alerta == False:
                 valor_lido = distancia()
                 print(valor_lido)
                 if valor_lido <= distanciaSegura:
@@ -143,7 +143,7 @@ while True:
                     alerta = True
                     
                 #atualiza a variável de controle com a ultuima hora da leitura
-                horaLeituraDistanci = delay.time()
+                horaLeituraDistancia = delay.time()
             
             #essa comparação faz com que o código não trave no delay e execute a leitura do sensor DHT a cada 15 segundos
             if (horaAtual - horaLeituraDHT) >= 15:
